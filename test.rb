@@ -17,6 +17,13 @@ class Forecast
   end
 end
 
+class Astronomy
+  private def get_response
+    info_file = File.read('astronomy_durham.json')
+    JSON.parse(info_file)
+  end
+end
+
 class WeatherReportTest < Minitest::Test
 
   def test_weather_type_01
@@ -70,5 +77,11 @@ Monday:\nCloudy with periods of rain. High 74F. Winds NE at 10 to 15 mph. Chance
 Tuesday:\nRain showers early with overcast skies later in the day. High 77F. Winds NE at 5 to 10 mph. Chance of rain 40%.\n\
 Wednesday:\nCloudy skies early, followed by partial clearing. High near 80F. Winds NE at 5 to 10 mph.\n",
     Forecast.new(27701).ten_day
+  end
+
+  def test_get_sunrise_sunset_10
+    a = Astronomy.new(27701)
+    assert_equal "7:02", a.sunrise
+    assert_equal "19:14", a.sunset
   end
 end

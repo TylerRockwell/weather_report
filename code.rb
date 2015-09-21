@@ -1,5 +1,6 @@
 require './current_conditions'
 require './forecast'
+require './astronomy'
 
 # puts "Please enter a zip code: "
 #
