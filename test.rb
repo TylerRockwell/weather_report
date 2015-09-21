@@ -107,7 +107,6 @@ Wednesday:\nCloudy skies early, followed by partial clearing. High near 80F. Win
 
   def test_find_active_hurricanes_12
     hurricanes = Hurricanes.new
-  
-    assert_equal "Tropical Storm Ida", hurricanes.active_list
+    assert hurricanes.active_list.include?("Tropical Depression")
   end
 end

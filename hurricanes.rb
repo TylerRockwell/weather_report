@@ -10,9 +10,7 @@ class Hurricanes
   def active_list
     storm_list = ""
     @response["currenthurricane"].each do |hurricane|
-      byebug
       storm_list << "#{hurricane["stormInfo"]["stormName_Nice"]} \n"
-      #@response["currenthurricane"][0]["stormInfo"]["stormName_Nice"]
     end
     storm_list
   end
@@ -20,6 +18,6 @@ class Hurricanes
 
   private def get_response
     key = ENV['WUNDERGROUND_KEY']
-    HTTParty.get("http://api.wunderground.com/api/#{key}/astronomy/q/#{@zip_code}.json")
+    HTTParty.get("http://api.wunderground.com/api/#{key}/currenthurricane/view.json")
   end
 end

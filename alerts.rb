@@ -8,13 +8,13 @@ class Alerts
 
   def get_alerts
     return "There are currently no weather alerts." if @response["alerts"].empty?
-    output = "Current weather alerts:\n"
+    output = ""
     @response["alerts"].each {|alert| output << "#{alert}\n"}
     output
   end
 
   private def get_response
     key = ENV['WUNDERGROUND_KEY']
-    HTTParty.get("http://api.wunderground.com/api/#{key}/astronomy/q/#{@zip_code}.json")
+    HTTParty.get("http://api.wunderground.com/api/#{key}/alerts/q/#{@zip_code}.json")
   end
 end

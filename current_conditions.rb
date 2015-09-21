@@ -31,16 +31,6 @@ class CurrentConditions
     @response["current_observation"]["relative_humidity"]
   end
 
-  def get_it_all_pretty
-    "Here are the current conditions for #{@zip_code}:\n
-    It is currently #{type}.\n
-    The current temperature is #{temperature}\n
-    But it feels more like #{feels_like_temp}.\n
-    Humidity is at: #{humidity}.\n
-    The dewpoint is: #{dewpoint}.\n
-    Current wind speed is: #{wind_speed}"
-  end
-
   private def get_response
     key = ENV['WUNDERGROUND_KEY']
     HTTParty.get("http://api.wunderground.com/api/#{key}/conditions/q/#{@zip_code}.json")
