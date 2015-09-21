@@ -24,7 +24,25 @@ class WeatherReportTest < Minitest::Test
     assert_equal "71.9 F (22.2 C)", CurrentConditions.new(27701).feels_like_temp
   end
 
-  def test_get_wind_speed_and_direction
+  def test_get_wind_speed_and_direction_04
     assert_equal "0.0 MPH NW", CurrentConditions.new(27701).wind_speed
+  end
+
+  def test_get_dewpoint_05
+    assert_equal "69 F (20 C)", CurrentConditions.new(27701).dewpoint
+  end
+
+  def test_get_humidity_06
+    assert_equal "90%", CurrentConditions.new(27701).humidity
+  end
+
+  def test_show_all_conditions_07
+    assert_equal "Here are the current conditions for 27701:\n
+    It is currently Overcast.\n
+    The current temperature is 71.9 F (22.2 C)\n
+    But it feels more like 71.9 F (22.2 C).\n
+    Humidity is at: 90%.\n
+    The dewpoint is: 69 F (20 C).\n
+    Current wind speed is: 0.0 MPH NW", CurrentConditions.new(27701).get_it_all_pretty
   end
 end
