@@ -31,6 +31,14 @@ class Alerts
   end
 end
 
+class Hurricanes
+  private def get_response
+    info_file = File.read('hurricanes.json')
+    JSON.parse(info_file)
+  end
+end
+
+
 class WeatherReportTest < Minitest::Test
 
   def test_weather_type_01
@@ -92,8 +100,14 @@ Wednesday:\nCloudy skies early, followed by partial clearing. High near 80F. Win
     assert_equal "19:14", a.sunset
   end
 
-  def test_get_weather_alerts
+  def test_get_weather_alerts_11
     da = Alerts.new(27701)
     assert_equal "There are currently no weather alerts.", da.get_alerts
+  end
+
+  def test_find_active_hurricanes_12
+    hurricanes = Hurricanes.new
+  
+    assert_equal "Tropical Storm Ida", hurricanes.active_list
   end
 end

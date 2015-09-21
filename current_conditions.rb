@@ -43,6 +43,6 @@ class CurrentConditions
 
   private def get_response
     key = ENV['WUNDERGROUND_KEY']
-    HTTParty.get("http://api.wunderground.com/api/4d6eeefee9303bc0/conditions/q/#{@zip_code}.json")
+    HTTParty.get("http://api.wunderground.com/api/#{key}/conditions/q/#{@zip_code}.json")
   end
 end
