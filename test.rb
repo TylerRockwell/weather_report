@@ -24,6 +24,13 @@ class Astronomy
   end
 end
 
+class Alerts
+  private def get_response
+    info_file = File.read('alerts_durham.json')
+    JSON.parse(info_file)
+  end
+end
+
 class WeatherReportTest < Minitest::Test
 
   def test_weather_type_01
@@ -83,5 +90,10 @@ Wednesday:\nCloudy skies early, followed by partial clearing. High near 80F. Win
     a = Astronomy.new(27701)
     assert_equal "7:02", a.sunrise
     assert_equal "19:14", a.sunset
+  end
+
+  def test_get_weather_alerts
+    da = Alerts.new(27701)
+    assert_equal "There are currently no weather alerts.", da.get_alerts
   end
 end
