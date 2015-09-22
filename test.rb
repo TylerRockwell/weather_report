@@ -109,4 +109,8 @@ Wednesday:\nCloudy skies early, followed by partial clearing. High near 80F. Win
     hurricanes = Hurricanes.new
     assert hurricanes.active_list.include?("Tropical Depression")
   end
+
+  # def test_can_parse_various_inputs
+  #
+  # end
 end
