@@ -2,8 +2,10 @@ require 'httparty'
 require 'byebug'
 
 class CurrentConditions
-  def initialize(zip_code)
-    @zip_code = zip_code
+  def initialize(zip: 0, city: 0, state: 0)
+    @zip_code = zip
+    @city = city
+    @state = state
     @response = get_response
   end
 
@@ -33,6 +35,7 @@ class CurrentConditions
 
   private def get_response
     key = ENV['WUNDERGROUND_KEY']
-    HTTParty.get("http://api.wunderground.com/api/#{key}/conditions/q/#{@zip_code}.json")
+    HTTParty.get("http://api.wunderground.com/api/#{key}/conditions/q/#{@zip_code}.json") unless @zip_code == 0
+    HTTParty.get("http://api.wunderground.com/api/#{key}/conditions/q/#{@state}/#{@city}.json") unless @state == 0
   end
 end

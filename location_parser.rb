@@ -16,8 +16,10 @@ class LocationParser
       @state = input.split(',')[1]
     elsif zip_regex.match(input)
       @zip = input
-      "zip"
+      return "zip"
     end
+    @city.tr!(" ", "_")
+    @state.tr!(" ", "")
   end
 
   def get_abbreviation(state_name)
